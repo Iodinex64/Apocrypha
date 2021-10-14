@@ -1,4 +1,4 @@
-package com.example
+package com.apocrypha
 
 import javafx.scene.text.FontWeight
 import tornadofx.Stylesheet
