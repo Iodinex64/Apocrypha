@@ -1,6 +1,4 @@
 package com.apocrypha.adt
 
-class World {
-    var name = ""
-    //var locations: List<>
+class World constructor(var name: String, var id: Int) {
 }
