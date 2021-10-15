@@ -4,7 +4,7 @@ import com.apocrypha.Landmark
 
 class Location constructor(
     var name: String = "",
-    var landmarks: List<Landmark>?,
+    var landmarks: MutableList<Landmark>?,
     private var population: Int = 0,
     var bio: String = ""
 ) {
