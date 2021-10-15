@@ -1,5 +1,4 @@
 package com.apocrypha.view
-import com.apocrypha.adt.World
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
@@ -8,11 +7,11 @@ import tornadofx.*
 import java.io.FileWriter
 
 var jo = JsonObject()
-var filepath = "D:\\Github Repos\\Apocrypha\\test.json"
+var filepath = "D:\\Github Repos\\Apocrypha\\"
 
 class MainView : View() {
-    val controller: MyController by inject()
-    val input = SimpleStringProperty()
+    private val controller: MyController by inject()
+    private val input = SimpleStringProperty()
 
     override val root = form {
         fieldset {
@@ -22,14 +21,8 @@ class MainView : View() {
 
             button("Add") {
                 action {
-                    controller.writeToDb(input.value)
+                    controller.writeToJSON(input.value)
                     input.value = ""
-                }
-            }
-
-            button("Commit") {
-                action {
-
                 }
             }
         }
@@ -39,11 +32,11 @@ class MainView : View() {
 
 
 class MyController: Controller() {
-    fun writeToDb(inputValue: String) {
+    fun writeToJSON(inputValue: String) {
         var writer = FileWriter(filepath)
         var gson: Gson = GsonBuilder().setPrettyPrinting().create()
         println("Writing $inputValue to database!")
-        gson.toJson(World(inputValue, 1), writer)
+        //gson.toJson(World(inputValue), writer)
         writer.flush()
         writer.close()
     }
@@ -52,7 +45,7 @@ class MyController: Controller() {
         var writer = FileWriter(filepath)
         var gson: Gson = GsonBuilder().setPrettyPrinting().create()
         println("Writing $inputValue to database!")
-        gson.toJson(World(inputValue, 1), writer)
+        //gson.toJson(World(inputValue), writer)
         writer.flush()
         writer.close()
     }
