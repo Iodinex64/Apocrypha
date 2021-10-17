@@ -9,6 +9,7 @@ class CRUDLocation : View("Locations") {
             field("Locations") {
                 button("Create Location") {
                     action {
+                        find(CRUDLocation::class).replaceWith(CreateLocationView::class, sizeToScene = true, centerOnScreen = true)
                     }
                 }
                 button("Edit Locations") {

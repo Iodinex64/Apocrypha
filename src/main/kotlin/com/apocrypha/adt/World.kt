@@ -7,6 +7,6 @@ class World constructor(var name: String) {
     var creatures: MutableList<Creature>? = null
 
     override fun toString(): String {
-        return "Created World! Name='$name', Characters=$characters, Races=$races, Locations=$locations, Creatures=$creatures)"
+        return "World Name='$name', Characters=$characters, Races=$races, Locations=$locations, Creatures=$creatures)"
     }
 }

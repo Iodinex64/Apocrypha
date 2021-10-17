@@ -3,20 +3,23 @@ package com.apocrypha.utils
 import com.apocrypha.adt.*
 
 object DataManager {
-    var worlds: MutableList<World>? = null
-    var characters: MutableList<Character>? = null
-    var races: MutableList<Race>? = null
-    var locations: MutableList<Location>? = null
-    var creatures: MutableList<Creature>? = null
+    var worlds: ArrayList<World>? = null
+    var characters: ArrayList<Character>? = null
+    var races: ArrayList<Race>? = null
+    var locations: ArrayList<Location>? = null
+    var creatures: ArrayList<Creature>? = null
 
     fun createWorld(name: String) {
         var w = World(name)
         worlds?.add(w)
-        println(w)
+        println(worlds?.size)
     }
 
     fun addCharacter(w: World, c: Character) {
         w.characters?.add(c)
+    }
+    fun deleteCharacter(w: World, c: Character) {
+        w.characters?.remove(c)
     }
     fun addRace(w: World, r: Race) {
         w.races?.add(r)
