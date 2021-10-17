@@ -1,41 +1,62 @@
 package com.apocrypha.view
+import com.apocrypha.adt.World
 import com.apocrypha.utils.DataManager
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonObject
-import javafx.beans.property.SimpleStringProperty
+import com.apocrypha.view.characterviews.CRUDCharacter
+import com.apocrypha.view.creatureviews.CRUDCreature
+import com.apocrypha.view.landmarkviews.CRUDLandmark
+import com.apocrypha.view.locationviews.CRUDLocation
+import com.apocrypha.view.raceviews.CRUDRace
+import com.apocrypha.view.worldviews.CRUDWorld
 import javafx.geometry.Pos
 import tornadofx.*
-import java.io.FileWriter
 
 var filepath = "D:\\Github Repos\\Apocrypha\\"
-var controller = ViewController()
-var dm = DataManager()
 
-class MainView : View() {
+class MainView : View("Apocrypha Main Menu") {
     override val root = form {
         fieldset {
             field("Apocrypha-PROTOTYPE") {
                 vbox(alignment = Pos.CENTER) {
                     button("Worlds") {
                         action {
-                            controller.createWorldWindow()
+                            runLater {
+                                find(MainView::class).replaceWith(CRUDWorld::class, sizeToScene = true, centerOnScreen = true)
+                            }
                         }
                     }
                     button("Characters") {
                         action {
+                            runLater {
+                                find(MainView::class).replaceWith(CRUDCharacter::class, sizeToScene = true, centerOnScreen = true)
+                            }
                         }
                     }
                     button("Races") {
                         action {
+                            runLater {
+                                find(MainView::class).replaceWith(CRUDRace::class, sizeToScene = true, centerOnScreen = true)
+                            }
                         }
                     }
                     button("Locations") {
                         action {
+                            runLater {
+                                find(MainView::class).replaceWith(CRUDLocation::class, sizeToScene = true, centerOnScreen = true)
+                            }
                         }
                     }
                     button("Creatures") {
                         action {
+                            runLater {
+                                find(MainView::class).replaceWith(CRUDCreature::class, sizeToScene = true, centerOnScreen = true)
+                            }
+                        }
+                    }
+                    button("Landmarks") {
+                        action {
+                            runLater {
+                                find(MainView::class).replaceWith(CRUDLandmark::class, sizeToScene = true, centerOnScreen = true)
+                            }
                         }
                     }
                 }
@@ -43,15 +64,6 @@ class MainView : View() {
         }
     }
 }
-
-class ViewController: Controller() {
-    fun createWorldWindow() {
-        runLater {
-            find(MainView::class).replaceWith(CreateWorldView::class, sizeToScene = true, centerOnScreen = true)
-        }
-    }
-}
-
 
 /*
 class MyController: Controller() {

@@ -1,17 +1,12 @@
 package com.apocrypha.adt
 
-class World constructor(
-    var name: String,
-    var characters: MutableList<Character>?,
-    var races: MutableList<Race>?,
-    var locations: MutableList<Location>?,
-    var creatures: MutableList<Creature>?,
-    private var population: Int = 0
-    ) {
-    init {
+class World constructor(var name: String) {
+    var characters: MutableList<Character>? = null
+    var races: MutableList<Race>? = null
+    var locations: MutableList<Location>? = null
+    var creatures: MutableList<Creature>? = null
 
-        for (loc in locations!!) {
-            population += loc.getPop()
-        }
+    override fun toString(): String {
+        return "Created World! Name='$name', Characters=$characters, Races=$races, Locations=$locations, Creatures=$creatures)"
     }
 }

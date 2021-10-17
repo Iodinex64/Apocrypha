@@ -20,12 +20,13 @@ class Styles : Stylesheet() {
 
         form {
             padding = box(25.px)
-            prefWidth = 500.px
+            prefWidth = 720.px
         }
 
         button {
             padding = box(10.0.px)
             prefWidth = 250.px
         }
+
     }
 }
