@@ -3,14 +3,14 @@ package com.apocrypha.utils
 import com.apocrypha.adt.*
 import javafx.collections.ObservableList
 import tornadofx.asObservable
-import tornadofx.observable
 
 object DataManager {
-    private var worlds = ArrayList<World>()
+    var worlds = ArrayList<World>()
     var characters = ArrayList<Character>()
     var races = ArrayList<Race>()
     var locations = ArrayList<Location>()
     var creatures = ArrayList<Creature>()
+    var landmarks = ArrayList<Landmark>()
 
     fun createWorld(name: String) {
         val w = World(name)
@@ -33,10 +33,25 @@ object DataManager {
         println("Characters Count: " + characters.size)
     }
 
+    fun createCreature(name: String, home: Location, bio: String) {
+        val cr = Creature(name, home, bio)
+        creatures.add(cr)
+        println("Creatures Count: " + characters.size)
+    }
+
     fun createRace(name: String, home: Location, bio: String) {
         val r = Race(name, home, bio)
         races.add(r)
         println("Races Count: " + races.size)
+    }
+
+    fun createLandmark(name: String, bio: String, population: Int, loc: Location) {
+        val la = Landmark(name, bio, population)
+        landmarks.add(la)
+        if (locations.contains(loc)) {
+            loc.landmarks.add(la)
+            println("Landmarks Count: " + landmarks.size)
+        }
     }
 
     fun getWorldsAsObservable(): ObservableList<World> {
@@ -64,18 +79,18 @@ object DataManager {
     }
 
     fun addCharacter(w: World, c: Character) {
-        w.characters?.add(c)
+        w.characters.add(c)
     }
     fun deleteCharacter(w: World, c: Character) {
-        w.characters?.remove(c)
+        w.characters.remove(c)
     }
     fun addRace(w: World, r: Race) {
-        w.races?.add(r)
+        w.races.add(r)
     }
     fun addLocation(w: World, l: Location) {
-        w.locations?.add(l)
+        w.locations.add(l)
     }
     fun addCreature(w: World, cr: Creature) {
-        w.creatures?.add(cr)
+        w.creatures.add(cr)
     }
 }

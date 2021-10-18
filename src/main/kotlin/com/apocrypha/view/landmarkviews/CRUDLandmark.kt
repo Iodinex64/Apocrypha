@@ -9,6 +9,7 @@ class CRUDLandmark : View("Landmarks") {
             field("Landmarks") {
                 button("Create Landmark") {
                     action {
+                        find(CRUDLandmark::class).replaceWith(CreateLandmarkView::class, sizeToScene = true, centerOnScreen = true)
                     }
                 }
                 button("Edit Landmarks") {

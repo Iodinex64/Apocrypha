@@ -1,8 +1,5 @@
 package com.apocrypha.view.characterviews
-import com.apocrypha.adt.Race
-import com.apocrypha.adt.World
 import com.apocrypha.utils.DataManager
-import javafx.scene.control.ListView
 import javafx.scene.control.TextArea
 import javafx.scene.control.TextField
 import tornadofx.*
@@ -20,13 +17,13 @@ class CreateCharacterView : View("Create Character") {
 
             characterBioField = textarea("About this Character...") {
             }
-
+            label("Place of origin:")
             listview(DataManager.getLocationsAsObservable()) {
                 onUserSelect {
                     locationListIndex = selectionModel.selectedIndex
                 }
             }
-
+            label("Race:")
             listview(DataManager.getRacesAsObservable()) {
                 onUserSelect {
                     raceListIndex = selectionModel.selectedIndex

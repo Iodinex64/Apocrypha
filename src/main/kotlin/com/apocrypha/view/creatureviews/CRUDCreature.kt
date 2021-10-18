@@ -9,6 +9,7 @@ class CRUDCreature : View("Creatures") {
             field("Creatures") {
                 button("Create Creature") {
                     action {
+                        find(CRUDCreature::class).replaceWith(CreateCreatureView::class, sizeToScene = true, centerOnScreen = true)
                     }
                 }
                 button("Edit Creatures") {

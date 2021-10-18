@@ -21,7 +21,7 @@ class CreateLocationView : View("Create Location") {
             locationBioField = textarea("About this location...") {
 
             }
-
+            label("World this location belongs to:")
             listview(DataManager.getWorldsAsObservable()) {
                 onUserSelect {
                     worldListIndex = selectionModel.selectedIndex
