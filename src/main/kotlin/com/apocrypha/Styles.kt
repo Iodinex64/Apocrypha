@@ -28,5 +28,13 @@ class Styles : Stylesheet() {
             prefWidth = 250.px
         }
 
+        textArea {
+            prefHeight = 100.px
+        }
+
+        listView {
+            prefHeight = 100.px
+        }
+
     }
 }

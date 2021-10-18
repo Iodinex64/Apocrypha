@@ -9,6 +9,7 @@ class CRUDCharacter : View("Characters") {
             field("Characters") {
                 button("Create Character") {
                     action {
+                        find(CRUDCharacter::class).replaceWith(CreateCharacterView::class, sizeToScene = true, centerOnScreen = true)
                     }
                 }
                 button("Edit Characters") {

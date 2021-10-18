@@ -7,10 +7,10 @@ import tornadofx.observable
 
 object DataManager {
     private var worlds = ArrayList<World>()
-    var characters: ArrayList<Character>? = null
-    var races: ArrayList<Race>? = null
+    var characters = ArrayList<Character>()
+    var races = ArrayList<Race>()
     var locations = ArrayList<Location>()
-    var creatures: ArrayList<Creature>? = null
+    var creatures = ArrayList<Creature>()
 
     fun createWorld(name: String) {
         val w = World(name)
@@ -27,12 +27,40 @@ object DataManager {
         }
     }
 
+    fun createCharacter(name: String, race: Race, home: Location, bio: String) {
+        val c = Character(name, race, home, bio)
+        characters.add(c)
+        println("Characters Count: " + characters.size)
+    }
+
+    fun createRace(name: String, home: Location, bio: String) {
+        val r = Race(name, home, bio)
+        races.add(r)
+        println("Races Count: " + races.size)
+    }
+
     fun getWorldsAsObservable(): ObservableList<World> {
         return worlds.asObservable()
     }
 
+    fun getRacesAsObservable(): ObservableList<Race> {
+        return races.asObservable()
+    }
+
+    fun getLocationsAsObservable(): ObservableList<Location> {
+        return locations.asObservable()
+    }
+
     fun getWorldAtIndex(index: Int): World {
         return worlds[index]
+    }
+
+    fun getRaceAtIndex(index: Int): Race {
+        return races[index]
+    }
+
+    fun getLocationAtIndex(index: Int): Location {
+        return locations[index]
     }
 
     fun addCharacter(w: World, c: Character) {

@@ -9,6 +9,7 @@ class CRUDRace : View("Races") {
             field("Races") {
                 button("Create Race") {
                     action {
+                        find(CRUDRace::class).replaceWith(CreateRaceView::class, sizeToScene = true, centerOnScreen = true)
                     }
                 }
                 button("Edit Races") {
