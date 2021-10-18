@@ -1,4 +1,4 @@
-package com.apocrypha
+package com.apocrypha.adt
 
 class Landmark constructor(
     var name: String = "",

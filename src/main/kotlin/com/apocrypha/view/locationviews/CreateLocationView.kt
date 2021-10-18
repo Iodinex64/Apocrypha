@@ -1,27 +1,38 @@
 package com.apocrypha.view.locationviews
-import com.apocrypha.Main
-import com.apocrypha.adt.Location
 import com.apocrypha.adt.World
 import com.apocrypha.utils.DataManager
-import com.apocrypha.view.MainView
+import javafx.beans.property.SimpleObjectProperty
+import javafx.scene.control.ListView
+import javafx.scene.control.TextArea
 import javafx.scene.control.TextField
 import tornadofx.*
 
 class CreateLocationView : View("Create Location") {
-    private var worldNameField: TextField by singleAssign()
+    private var locationNameField: TextField by singleAssign()
+    private var locationBioField: TextArea by singleAssign()
+    private var worldList: ListView<World> = ListView<World>()
+    var worldListIndex: Int = 0
+
     override val root = form {
         fieldset {
-            worldNameField = textfield("Location Name...") {
+            locationNameField = textfield("Location Name...") {
             }
-            listview<World> {
-                for (worlds in DataManager.worlds!!) {
-                    items.add(worlds)
+
+            locationBioField = textarea("About this location...") {
+
+            }
+
+            listview(DataManager.getWorldsAsObservable()) {
+                onUserSelect {
+                    worldListIndex = selectionModel.selectedIndex
                 }
             }
 
             button("Create Location") {
                 action {
-                    DataManager.createWorld(worldNameField.text)
+                    DataManager.createLocation(locationNameField.text,
+                        locationBioField.text,
+                        DataManager.getWorldAtIndex(worldListIndex))
                 }
             }
             button("Return") {
