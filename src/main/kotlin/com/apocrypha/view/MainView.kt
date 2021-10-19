@@ -13,6 +13,9 @@ import tornadofx.*
 
 
 class MainView : View("Apocrypha Main Menu") {
+    init {
+        DataManager.readFromJSON()
+    }
     override val root = form {
         fieldset {
             field("Apocrypha-PROTOTYPE") {

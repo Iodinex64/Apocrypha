@@ -26,4 +26,8 @@ class Location constructor(var name: String, var bio: String) {
     }
 
     fun getPop(): Int { return population }
+
+    override fun toString(): String {
+        return "Location: $name"
+    }
 }

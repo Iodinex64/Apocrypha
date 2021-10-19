@@ -3,9 +3,14 @@ package com.apocrypha.utils
 import com.apocrypha.adt.*
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import javafx.collections.ObservableList
 import tornadofx.asObservable
 import java.io.FileWriter
+import java.io.Reader
+import java.nio.file.Files
+import java.nio.file.Paths
+
 
 object DataManager {
     var filepath = "D:\\Github Repos\\Apocrypha\\"
@@ -113,6 +118,21 @@ object DataManager {
     }
 
     fun readFromJSON() {
+        val reader: Reader = Files.newBufferedReader(Paths.get(filepath + "ApocryphaWorldList.json"))
+        val jsonWorlds: ArrayList<World> = Gson().fromJson(reader, object : TypeToken<ArrayList<World?>?>() {}.type)
+        masterWorlds.addAll(jsonWorlds)
 
+        //repopulate master lists
+        for (wor in jsonWorlds) {
+            masterLocations.addAll(wor.locations)
+            masterCharacters.addAll(wor.characters)
+        }
+        for (loc in masterLocations) {
+            masterRaces.addAll(loc.races)
+            masterLandmarks.addAll(loc.landmarks)
+            masterCreatures.addAll(loc.creatures)
+        }
+        //we're done
+        reader.close()
     }
 }
