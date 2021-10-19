@@ -19,7 +19,7 @@ object DataManager {
     var masterCreatures = ArrayList<Creature>()
     var masterLandmarks = ArrayList<Landmark>()
 
-    var editSelection = 0
+    var WorldEditorSelection = 0
 
     fun createWorld(name: String) {
         val w = World(name)
@@ -28,8 +28,8 @@ object DataManager {
     }
 
     fun editWorld(w: World) {
-        println("Replaced " + masterWorlds[editSelection].toString())
-        masterWorlds[editSelection] = w
+        println("Replaced " + masterWorlds[WorldEditorSelection].toString())
+        masterWorlds[WorldEditorSelection] = w
         println("With $w")
     }
 
@@ -52,7 +52,7 @@ object DataManager {
     }
 
     fun createLocation(name: String, bio: String, w: World) {
-        val l = Location(name, bio)
+        val l = Location(name, bio, w.name)
         masterLocations.add(l)
         if (masterWorlds.contains(w)) {
             w.locations.add(l)
@@ -61,7 +61,7 @@ object DataManager {
     }
 
     fun createCharacter(name: String, race: Race, world: World, bio: String) {
-        val c = Character(name, race, bio)
+        val c = Character(name, race, bio, world.name)
         masterCharacters.add(c)
         if (masterWorlds.contains(world)) {
             world.characters.add(c)
@@ -70,7 +70,7 @@ object DataManager {
     }
 
     fun createCreature(name: String, home: Location, bio: String) {
-        val cr = Creature(name, bio)
+        val cr = Creature(name, bio, home.name)
         masterCreatures.add(cr)
         if (masterLocations.contains(home)) {
             home.addCreature(cr)
@@ -79,7 +79,7 @@ object DataManager {
     }
 
     fun createRace(name: String, home: Location, bio: String) {
-        val r = Race(name, bio)
+        val r = Race(name, bio, home.name)
         masterRaces.add(r)
         if (masterLocations.contains(home)) {
             home.races.add(r)
@@ -88,7 +88,7 @@ object DataManager {
     }
 
     fun createLandmark(name: String, bio: String, population: Int, loc: Location) {
-        val la = Landmark(name, bio, population)
+        val la = Landmark(name, bio, loc.name, population)
         masterLandmarks.add(la)
         if (masterLocations.contains(loc)) {
             loc.landmarks.add(la)

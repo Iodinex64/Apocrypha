@@ -1,6 +1,10 @@
 package com.apocrypha.adt
 
-class Location constructor(var name: String, var bio: String) {
+class Location constructor(
+    var name: String,
+    var bio: String,
+    var worldName: String = ""
+) {
     var landmarks = ArrayList<Landmark>()
     var creatures = ArrayList<Creature>()
     var races = ArrayList<Race>()

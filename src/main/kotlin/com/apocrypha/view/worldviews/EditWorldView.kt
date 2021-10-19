@@ -3,13 +3,12 @@ import com.apocrypha.utils.DataManager
 import tornadofx.*
 
 class EditWorldView : View("Worlds") {
-    var worldListIndex = 0
 
     override val root = form {
         fieldset {
             listview(DataManager.getWorldsAsObservable()) {
                 onUserSelect {
-                    DataManager.editSelection = selectionModel.selectedIndex
+                    DataManager.WorldEditorSelection = selectionModel.selectedIndex
                 }
             }
             button("Edit World") {
@@ -19,8 +18,8 @@ class EditWorldView : View("Worlds") {
             }
             button("Delete World") {
                 action {
-                    DataManager.removeWorld(DataManager.editSelection)
-                    DataManager.editSelection = 0
+                    DataManager.removeWorld(DataManager.WorldEditorSelection)
+                    DataManager.WorldEditorSelection = 0
                     find(EditWorldView::class).replaceWith(CRUDWorld::class, sizeToScene = true, centerOnScreen = true)
                 }
             }
