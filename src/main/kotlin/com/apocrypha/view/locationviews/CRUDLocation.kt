@@ -16,10 +16,7 @@ class CRUDLocation : View("Locations") {
                     action {
                     }
                 }
-                button("Delete Locations") {
-                    action {
-                    }
-                }
+
                 button("Return") {
                     action {
                         find(CRUDLocation::class).replaceWith(MainView::class, sizeToScene = true, centerOnScreen = true)

@@ -11,7 +11,6 @@ import java.io.Reader
 import java.nio.file.Files
 import java.nio.file.Paths
 
-
 object DataManager {
     var masterWorlds = ArrayList<World>()
     var masterCharacters = ArrayList<Character>()
@@ -20,10 +19,36 @@ object DataManager {
     var masterCreatures = ArrayList<Creature>()
     var masterLandmarks = ArrayList<Landmark>()
 
+    var editSelection = 0
+
     fun createWorld(name: String) {
         val w = World(name)
         masterWorlds.add(w)
         println("World Count: " + masterWorlds.size)
+    }
+
+    fun editWorld(w: World) {
+        println("Replaced " + masterWorlds[editSelection].toString())
+        masterWorlds[editSelection] = w
+        println("With $w")
+    }
+
+    fun removeWorld(index: Int) {
+        println("Removing world: " + masterWorlds[index])
+        masterWorlds.removeAt(index)
+        println("Done removing.")
+    }
+
+    fun removeCharacter(index: Int) {
+        val c = masterCharacters[index]
+        println("Removing character: $c")
+        for (world in masterWorlds) {
+            if (world.characters.contains((c))) {
+                world.characters.remove(c)
+            }
+        }
+        masterCharacters.remove(c)
+        println("Done removing.")
     }
 
     fun createLocation(name: String, bio: String, w: World) {
@@ -84,6 +109,10 @@ object DataManager {
         return masterLocations.asObservable()
     }
 
+    fun getCharactersAsObservable(): ObservableList<Character> {
+        return masterCharacters.asObservable()
+    }
+
     fun getWorldAtIndex(index: Int): World {
         return masterWorlds[index]
     }
@@ -99,18 +128,15 @@ object DataManager {
     fun addCharacter(w: World, c: Character) {
         w.characters.add(c)
     }
-    fun deleteCharacter(w: World, c: Character) {
-        w.characters.remove(c)
-    }
 
     fun addLocation(w: World, l: Location) {
         w.locations.add(l)
     }
 
     fun saveToJSON() {
+        println("Writing to database...")
         val writer = FileWriter("ApocryphaDatabase.json")
         val gson: Gson = GsonBuilder().setPrettyPrinting().create()
-        println("Writing to database...")
         gson.toJson(masterWorlds, writer)
         writer.flush()
         writer.close()
@@ -119,6 +145,7 @@ object DataManager {
 
     fun readFromJSON() {
         try {
+            println("Loading from database...")
             val reader: Reader = Files.newBufferedReader(Paths.get("ApocryphaDatabase.json"))
             val jsonWorlds: ArrayList<World> = Gson().fromJson(reader, object : TypeToken<ArrayList<World?>?>() {}.type)
             masterWorlds.addAll(jsonWorlds)
@@ -136,12 +163,13 @@ object DataManager {
             //we're done
             reader.close()
 
-            println("Worlds loaded: " + masterWorlds.size)
-            println("Locations loaded: " + masterLocations.size)
-            println("Characters loaded: " + masterCharacters.size)
-            println("Races loaded: " + masterRaces.size)
-            println("Creatures loaded: " + masterCreatures.size)
-            println("Landmarks loaded: " + masterLandmarks.size)
+            println("Data successfully loaded.")
+            println("   Worlds loaded: " + masterWorlds.size)
+            println("   Locations loaded: " + masterLocations.size)
+            println("   Characters loaded: " + masterCharacters.size)
+            println("   Races loaded: " + masterRaces.size)
+            println("   Creatures loaded: " + masterCreatures.size)
+            println("   Landmarks loaded: " + masterLandmarks.size)
         } catch (e: Exception) {
             println("Couldn't load from database, making new one...")
             saveToJSON()

@@ -16,10 +16,7 @@ class CRUDCreature : View("Creatures") {
                     action {
                     }
                 }
-                button("Delete Creatures") {
-                    action {
-                    }
-                }
+
                 button("Return") {
                     action {
                         find(CRUDCreature::class).replaceWith(MainView::class, sizeToScene = true, centerOnScreen = true)

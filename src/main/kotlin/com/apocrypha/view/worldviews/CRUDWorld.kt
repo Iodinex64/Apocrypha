@@ -13,12 +13,10 @@ class CRUDWorld : View("Worlds") {
                 }
                 button("Edit Worlds") {
                     action {
+                        find(CRUDWorld::class).replaceWith(EditWorldView::class, sizeToScene = true, centerOnScreen = true)
                     }
                 }
-                button("Delete Worlds") {
-                    action {
-                    }
-                }
+
                 button("Return") {
                     action {
                         find(CRUDWorld::class).replaceWith(MainView::class, sizeToScene = true, centerOnScreen = true)

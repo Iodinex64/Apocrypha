@@ -14,12 +14,10 @@ class CRUDCharacter : View("Characters") {
                 }
                 button("Edit Characters") {
                     action {
+                        find(CRUDCharacter::class).replaceWith(EditCharacterView::class, sizeToScene = true, centerOnScreen = true)
                     }
                 }
-                button("Delete Characters") {
-                    action {
-                    }
-                }
+
                 button("Return") {
                     action {
                         find(CRUDCharacter::class).replaceWith(MainView::class, sizeToScene = true, centerOnScreen = true)

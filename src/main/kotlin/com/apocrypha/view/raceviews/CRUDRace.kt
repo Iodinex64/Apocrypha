@@ -16,10 +16,7 @@ class CRUDRace : View("Races") {
                     action {
                     }
                 }
-                button("Delete Races") {
-                    action {
-                    }
-                }
+
                 button("Return") {
                     action {
                         find(CRUDRace::class).replaceWith(MainView::class, sizeToScene = true, centerOnScreen = true)

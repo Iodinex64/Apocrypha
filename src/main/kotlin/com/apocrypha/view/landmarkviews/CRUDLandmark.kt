@@ -16,10 +16,7 @@ class CRUDLandmark : View("Landmarks") {
                     action {
                     }
                 }
-                button("Delete Landmarks") {
-                    action {
-                    }
-                }
+
                 button("Return") {
                     action {
                         find(CRUDLandmark::class).replaceWith(MainView::class, sizeToScene = true, centerOnScreen = true)
