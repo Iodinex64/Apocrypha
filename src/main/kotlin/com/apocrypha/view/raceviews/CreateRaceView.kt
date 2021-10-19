@@ -17,6 +17,7 @@ class CreateRaceView : View("Create race") {
 
             raceBioField = textarea("About this Race...") {
             }
+
             label("Place of origin:")
             listview(DataManager.getLocationsAsObservable()) {
                 onUserSelect {

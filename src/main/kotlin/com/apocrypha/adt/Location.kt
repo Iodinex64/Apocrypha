@@ -6,11 +6,7 @@ class Location constructor(var name: String, var bio: String) {
     var races = ArrayList<Race>()
     private var population: Int = 0
 
-    init {
-        calculatePop()
-    }
-
-    private fun calculatePop() {
+    fun calculatePop() {
         //sum all landmark populations
         for (landmark in landmarks) {
             population += landmark.population

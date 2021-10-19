@@ -1,0 +1,51 @@
+[
+  {
+    "characters": [
+      {
+        "name": "Testy Mc. Teston",
+        "race": {
+          "name": "Testai",
+          "bio": "A race known for testing Kotlin apps"
+        },
+        "bio": "A hero known for testing Kotlin apps."
+      }
+    ],
+    "locations": [
+      {
+        "landmarks": [
+          {
+            "name": "Testoria",
+            "bio": "A quaint hovel in which many brave heroes test Kotlin apps.",
+            "population": 1337
+          },
+          {
+            "name": "Testorin",
+            "bio": "Toothpaste factory. Also tests Kotlin apps",
+            "population": 2000
+          },
+          {
+            "name": "Testonie",
+            "bio": "The home of Kotlin testing.",
+            "population": 420
+          }
+        ],
+        "creatures": [
+          {
+            "name": "Testories",
+            "bio": "A creature infamous for testing Kotlin apps."
+          }
+        ],
+        "races": [
+          {
+            "name": "Testai",
+            "bio": "A race known for testing Kotlin apps"
+          }
+        ],
+        "population": 3757,
+        "name": "Testalra",
+        "bio": "A location known for testing Kotlin apps"
+      }
+    ],
+    "name": "Testara"
+  }
+]

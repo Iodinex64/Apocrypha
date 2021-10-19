@@ -13,8 +13,6 @@ import java.nio.file.Paths
 
 
 object DataManager {
-    var filepath = "D:\\Github Repos\\Apocrypha\\"
-
     var masterWorlds = ArrayList<World>()
     var masterCharacters = ArrayList<Character>()
     var masterRaces = ArrayList<Race>()
@@ -69,6 +67,7 @@ object DataManager {
         masterLandmarks.add(la)
         if (masterLocations.contains(loc)) {
             loc.landmarks.add(la)
+            loc.calculatePop()
             println("Landmarks Count: " + masterLandmarks.size)
         }
     }
@@ -109,30 +108,44 @@ object DataManager {
     }
 
     fun saveToJSON() {
-        val writer = FileWriter(filepath + "ApocryphaWorldList.json")
+        val writer = FileWriter("ApocryphaDatabase.json")
         val gson: Gson = GsonBuilder().setPrettyPrinting().create()
-        println("Writing worlds to database...")
+        println("Writing to database...")
         gson.toJson(masterWorlds, writer)
         writer.flush()
         writer.close()
+        println("Data successfully stored.")
     }
 
     fun readFromJSON() {
-        val reader: Reader = Files.newBufferedReader(Paths.get(filepath + "ApocryphaWorldList.json"))
-        val jsonWorlds: ArrayList<World> = Gson().fromJson(reader, object : TypeToken<ArrayList<World?>?>() {}.type)
-        masterWorlds.addAll(jsonWorlds)
+        try {
+            val reader: Reader = Files.newBufferedReader(Paths.get("ApocryphaDatabase.json"))
+            val jsonWorlds: ArrayList<World> = Gson().fromJson(reader, object : TypeToken<ArrayList<World?>?>() {}.type)
+            masterWorlds.addAll(jsonWorlds)
 
-        //repopulate master lists
-        for (wor in jsonWorlds) {
-            masterLocations.addAll(wor.locations)
-            masterCharacters.addAll(wor.characters)
+            //repopulate master lists
+            for (wor in jsonWorlds) {
+                masterLocations.addAll(wor.locations)
+                masterCharacters.addAll(wor.characters)
+            }
+            for (loc in masterLocations) {
+                masterRaces.addAll(loc.races)
+                masterLandmarks.addAll(loc.landmarks)
+                masterCreatures.addAll(loc.creatures)
+            }
+            //we're done
+            reader.close()
+
+            println("Worlds loaded: " + masterWorlds.size)
+            println("Locations loaded: " + masterLocations.size)
+            println("Characters loaded: " + masterCharacters.size)
+            println("Races loaded: " + masterRaces.size)
+            println("Creatures loaded: " + masterCreatures.size)
+            println("Landmarks loaded: " + masterLandmarks.size)
+        } catch (e: Exception) {
+            println("Couldn't load from database, making new one...")
+            saveToJSON()
+            readFromJSON()
         }
-        for (loc in masterLocations) {
-            masterRaces.addAll(loc.races)
-            masterLandmarks.addAll(loc.landmarks)
-            masterCreatures.addAll(loc.creatures)
-        }
-        //we're done
-        reader.close()
     }
 }
