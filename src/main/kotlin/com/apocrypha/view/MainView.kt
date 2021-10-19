@@ -10,12 +10,17 @@ import com.apocrypha.view.worldviews.CRUDWorld
 import javafx.geometry.Pos
 import tornadofx.*
 
-var filepath = "D:\\Github Repos\\Apocrypha\\"
+
 
 class MainView : View("Apocrypha Main Menu") {
     override val root = form {
         fieldset {
             field("Apocrypha-PROTOTYPE") {
+                button("Save to JSON") {
+                    action {
+                        DataManager.saveToJSON()
+                    }
+                }
                 vbox(alignment = Pos.CENTER) {
                     button("Worlds") {
                         action {

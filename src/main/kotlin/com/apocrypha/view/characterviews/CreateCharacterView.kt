@@ -8,7 +8,7 @@ class CreateCharacterView : View("Create Character") {
     private var characterNameField: TextField by singleAssign()
     private var characterBioField: TextArea by singleAssign()
     private var raceListIndex: Int = 0
-    private var locationListIndex: Int = 0
+    private var worldListIndex: Int = 0
 
     override val root = form {
         fieldset {
@@ -17,10 +17,10 @@ class CreateCharacterView : View("Create Character") {
 
             characterBioField = textarea("About this Character...") {
             }
-            label("Place of origin:")
-            listview(DataManager.getLocationsAsObservable()) {
+            label("World of origin:")
+            listview(DataManager.getWorldsAsObservable()) {
                 onUserSelect {
-                    locationListIndex = selectionModel.selectedIndex
+                    worldListIndex = selectionModel.selectedIndex
                 }
             }
             label("Race:")
@@ -34,7 +34,7 @@ class CreateCharacterView : View("Create Character") {
                 action {
                     DataManager.createCharacter(characterNameField.text,
                         DataManager.getRaceAtIndex(raceListIndex),
-                        DataManager.getLocationAtIndex(locationListIndex),
+                        DataManager.getWorldAtIndex(worldListIndex),
                         characterBioField.text)
 
                 }
