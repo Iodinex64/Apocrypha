@@ -12,6 +12,7 @@ class Location constructor(
 
     fun calculatePop() {
         //sum all landmark populations
+        population = 0
         for (landmark in landmarks) {
             population += landmark.population
         }

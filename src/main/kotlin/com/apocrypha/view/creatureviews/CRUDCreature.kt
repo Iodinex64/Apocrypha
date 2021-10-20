@@ -14,6 +14,7 @@ class CRUDCreature : View("Creatures") {
                 }
                 button("Edit Creatures") {
                     action {
+                        find(CRUDCreature::class).replaceWith(EditCreatureView::class, sizeToScene = true, centerOnScreen = true)
                     }
                 }
 

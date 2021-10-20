@@ -14,6 +14,7 @@ class CRUDRace : View("Races") {
                 }
                 button("Edit Races") {
                     action {
+                        find(CRUDRace::class).replaceWith(EditRaceView::class, sizeToScene = true, centerOnScreen = true)
                     }
                 }
 

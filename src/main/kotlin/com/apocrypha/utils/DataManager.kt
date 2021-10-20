@@ -1,5 +1,4 @@
 package com.apocrypha.utils
-
 import com.apocrypha.adt.*
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -57,6 +56,48 @@ object DataManager {
         }
     }
 
+    fun editCreature(newCR: Creature) {
+        println("Replaced " + masterCreatures[editorSelection].toString())
+        for (world in masterWorlds) {
+            for (location in world.locations) {
+                if (location.creatures.contains(masterCreatures[editorSelection])) {
+                    val i = location.creatures.indexOf(masterCreatures[editorSelection])
+                    location.creatures[i] = newCR
+                    masterCreatures[editorSelection] = newCR
+                    println("With $newCR")
+                }
+            }
+        }
+    }
+
+    fun editRace(newR: Race) {
+        println("Replaced " + masterRaces[editorSelection].toString())
+        for (world in masterWorlds) {
+            for (location in world.locations) {
+                if (location.races.contains(masterRaces[editorSelection])) {
+                    val i = location.races.indexOf(masterRaces[editorSelection])
+                    location.races[i] = newR
+                    masterRaces[editorSelection] = newR
+                    println("With $newR")
+                }
+            }
+        }
+    }
+
+    fun editLandmark(newLA: Landmark) {
+        println("Replaced " + masterLandmarks[editorSelection].toString())
+        for (world in masterWorlds) {
+            for (location in world.locations) {
+                if (location.landmarks.contains(masterLandmarks[editorSelection])) {
+                    val i = location.landmarks.indexOf(masterLandmarks[editorSelection])
+                    location.landmarks[i] = newLA
+                    masterLandmarks[editorSelection] = newLA
+                    println("With $newLA")
+                }
+            }
+        }
+    }
+
     fun removeWorld(index: Int) {
         println("Removing world: " + masterWorlds[index])
         masterWorlds.removeAt(index)
@@ -77,7 +118,7 @@ object DataManager {
 
     fun removeLocation(index: Int) {
         val l = masterLocations[index]
-        println("Removing character: $l")
+        println("Removing location: $l")
         for (world in masterWorlds) {
             if (world.locations.contains((l))) {
                 world.locations.remove(l)
@@ -85,6 +126,45 @@ object DataManager {
         }
         masterLocations.remove(l)
         println("Done removing.")
+    }
+
+    fun removeCreature(index: Int) {
+        val cr = masterCreatures[index]
+        println("Removing creature: $cr")
+        for (world in masterWorlds) {
+            for (location in world.locations)
+                if (location.creatures.contains((cr))) {
+                    location.creatures.remove(cr)
+                    println("Done removing.")
+                }
+        }
+        masterCreatures.remove(cr)
+    }
+
+    fun removeRace(index: Int) {
+        val r = masterRaces[index]
+        println("Removing creature: $r")
+        for (world in masterWorlds) {
+            for (location in world.locations)
+                if (location.races.contains((r))) {
+                    location.races.remove(r)
+                    println("Done removing.")
+                }
+        }
+        masterRaces.remove(r)
+    }
+
+    fun removeLandmark(index: Int) {
+        val la = masterLandmarks[index]
+        println("Removing landmark: $la")
+        for (world in masterWorlds) {
+            for (location in world.locations)
+                if (location.landmarks.contains((la))) {
+                    location.landmarks.remove(la)
+                    println("Done removing.")
+                }
+        }
+        masterLandmarks.remove(la)
     }
 
     fun createLocation(name: String, bio: String, w: World) {
@@ -127,7 +207,7 @@ object DataManager {
         val la = Landmark(name, bio, loc.name, population)
         masterLandmarks.add(la)
         if (masterLocations.contains(loc)) {
-            loc.landmarks.add(la)
+            loc.addLandmark(la)
             loc.calculatePop()
             println("Landmarks Count: " + masterLandmarks.size)
         }
@@ -149,6 +229,14 @@ object DataManager {
         return masterCharacters.asObservable()
     }
 
+    fun getCreaturesAsObservable(): ObservableList<Creature> {
+        return masterCreatures.asObservable()
+    }
+
+    fun getLandmarksAsObservable(): ObservableList<Landmark> {
+        return masterLandmarks.asObservable()
+    }
+
     fun getWorldAtIndex(index: Int): World {
         return masterWorlds[index]
     }
@@ -159,14 +247,6 @@ object DataManager {
 
     fun getLocationAtIndex(index: Int): Location {
         return masterLocations[index]
-    }
-
-    fun addCharacter(w: World, c: Character) {
-        w.characters.add(c)
-    }
-
-    fun addLocation(w: World, l: Location) {
-        w.locations.add(l)
     }
 
     fun saveToJSON() {
