@@ -18,12 +18,7 @@ class CharacterEditorView : View("Edit Character") {
 
             characterBioField = textarea(DataManager.masterCharacters[DataManager.editorSelection].bio) {
             }
-            label("World of origin:")
-            listview(DataManager.getWorldsAsObservable()) {
-                onUserSelect {
-                    worldListIndex = selectionModel.selectedIndex
-                }
-            }
+
             label("Race:")
             listview(DataManager.getRacesAsObservable()) {
                 onUserSelect {

@@ -34,7 +34,6 @@ object DataManager {
     }
 
     fun editCharacter(newC: Character) {
-        //c will be persistent between views!
         println("Replaced " + masterCharacters[editorSelection].toString())
         for (world in masterWorlds) {
             if (world.characters.contains(masterCharacters[editorSelection])) {
@@ -42,6 +41,18 @@ object DataManager {
                 world.characters[i] = newC
                 masterCharacters[editorSelection] = newC
                 println("With $newC")
+            }
+        }
+    }
+
+    fun editLocation(newL: Location) {
+        println("Replaced " + masterLocations[editorSelection].toString())
+        for (world in masterWorlds) {
+            if (world.locations.contains(masterLocations[editorSelection])) {
+                val i = world.locations.indexOf(masterLocations[editorSelection])
+                world.locations[i] = newL
+                masterLocations[editorSelection] = newL
+                println("With $newL")
             }
         }
     }
@@ -54,13 +65,25 @@ object DataManager {
 
     fun removeCharacter(index: Int) {
         val c = masterCharacters[index]
-        println("Removing character: $c")
+        println("Removing location: $c")
         for (world in masterWorlds) {
             if (world.characters.contains((c))) {
                 world.characters.remove(c)
             }
         }
         masterCharacters.remove(c)
+        println("Done removing.")
+    }
+
+    fun removeLocation(index: Int) {
+        val l = masterLocations[index]
+        println("Removing character: $l")
+        for (world in masterWorlds) {
+            if (world.locations.contains((l))) {
+                world.locations.remove(l)
+            }
+        }
+        masterLocations.remove(l)
         println("Done removing.")
     }
 

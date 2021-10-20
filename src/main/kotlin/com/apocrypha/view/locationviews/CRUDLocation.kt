@@ -14,6 +14,7 @@ class CRUDLocation : View("Locations") {
                 }
                 button("Edit Locations") {
                     action {
+                        find(CRUDLocation::class).replaceWith(EditLocationView::class, sizeToScene = true, centerOnScreen = true)
                     }
                 }
 

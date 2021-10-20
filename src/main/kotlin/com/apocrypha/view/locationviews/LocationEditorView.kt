@@ -1,10 +1,15 @@
 package com.apocrypha.view.locationviews
+import com.apocrypha.adt.Character
+import com.apocrypha.adt.Location
+import com.apocrypha.adt.World
 import com.apocrypha.utils.DataManager
+import javafx.beans.property.SimpleObjectProperty
+import javafx.scene.control.ListView
 import javafx.scene.control.TextArea
 import javafx.scene.control.TextField
 import tornadofx.*
 
-class CreateLocationView : View("Create Location") {
+class LocationEditorView : View("Edit Location") {
     private var locationNameField: TextField by singleAssign()
     private var locationBioField: TextArea by singleAssign()
     var worldListIndex: Int = 0
@@ -24,16 +29,17 @@ class CreateLocationView : View("Create Location") {
                 }
             }
 
-            button("Create Location") {
+            button("Edit Location") {
                 action {
-                    DataManager.createLocation(locationNameField.text,
+                    val l = Location(locationNameField.text,
                         locationBioField.text,
-                        DataManager.getWorldAtIndex(worldListIndex))
+                    DataManager.getWorldAtIndex(worldListIndex).name)
+                    DataManager.editLocation(l)
                 }
             }
             button("Return") {
                 action {
-                    find(CreateLocationView::class).replaceWith(CRUDLocation::class, sizeToScene = true, centerOnScreen = true)
+                    find(LocationEditorView::class).replaceWith(CRUDLocation::class, sizeToScene = true, centerOnScreen = true)
                 }
             }
         }
