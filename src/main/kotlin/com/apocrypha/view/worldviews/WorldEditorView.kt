@@ -8,7 +8,7 @@ class WorldEditorView : View("Edit World") {
     private var worldNameField: TextField by singleAssign()
     override val root = form {
         fieldset {
-            worldNameField = textfield(DataManager.masterWorlds[DataManager.WorldEditorSelection].name) {
+            worldNameField = textfield(DataManager.masterWorlds[DataManager.editorSelection].name) {
             }
 
             button("Edit World") {

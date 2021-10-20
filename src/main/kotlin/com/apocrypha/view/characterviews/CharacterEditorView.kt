@@ -2,6 +2,7 @@ package com.apocrypha.view.characterviews
 import com.apocrypha.utils.DataManager
 import javafx.scene.control.TextArea
 import javafx.scene.control.TextField
+import com.apocrypha.adt.Character as Character
 import tornadofx.*
 
 class CharacterEditorView : View("Edit Character") {
@@ -12,10 +13,10 @@ class CharacterEditorView : View("Edit Character") {
 
     override val root = form {
         fieldset {
-            characterNameField = textfield("Character Name...") {
+            characterNameField = textfield(DataManager.masterCharacters[DataManager.editorSelection].name) {
             }
 
-            characterBioField = textarea("About this Character...") {
+            characterBioField = textarea(DataManager.masterCharacters[DataManager.editorSelection].bio) {
             }
             label("World of origin:")
             listview(DataManager.getWorldsAsObservable()) {
@@ -32,11 +33,12 @@ class CharacterEditorView : View("Edit Character") {
 
             button("Edit Character") {
                 action {
-                    DataManager.createCharacter(characterNameField.text,
-                        DataManager.getRaceAtIndex(raceListIndex),
-                        DataManager.getWorldAtIndex(worldListIndex),
-                        characterBioField.text)
-
+                    val c = Character(characterNameField.text,
+                    DataManager.getRaceAtIndex(raceListIndex),
+                    characterBioField.text,
+                    DataManager.getWorldAtIndex(worldListIndex).name)
+                    DataManager.editCharacter(c)
+                    find(CharacterEditorView::class).replaceWith(CRUDCharacter::class, sizeToScene = true, centerOnScreen = true)
                 }
             }
             button("Return") {

@@ -19,7 +19,7 @@ object DataManager {
     var masterCreatures = ArrayList<Creature>()
     var masterLandmarks = ArrayList<Landmark>()
 
-    var WorldEditorSelection = 0
+    var editorSelection = 0
 
     fun createWorld(name: String) {
         val w = World(name)
@@ -28,9 +28,22 @@ object DataManager {
     }
 
     fun editWorld(w: World) {
-        println("Replaced " + masterWorlds[WorldEditorSelection].toString())
-        masterWorlds[WorldEditorSelection] = w
+        println("Replaced " + masterWorlds[editorSelection].toString())
+        masterWorlds[editorSelection] = w
         println("With $w")
+    }
+
+    fun editCharacter(newC: Character) {
+        //c will be persistent between views!
+        println("Replaced " + masterCharacters[editorSelection].toString())
+        for (world in masterWorlds) {
+            if (world.characters.contains(masterCharacters[editorSelection])) {
+                val i = world.characters.indexOf(masterCharacters[editorSelection])
+                world.characters[i] = newC
+                masterCharacters[editorSelection] = newC
+                println("With $newC")
+            }
+        }
     }
 
     fun removeWorld(index: Int) {

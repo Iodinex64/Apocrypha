@@ -7,7 +7,7 @@ class EditCharacterView : View("Characters") {
         fieldset {
             listview(DataManager.getCharactersAsObservable()) {
                 onUserSelect {
-                    DataManager.WorldEditorSelection = selectionModel.selectedIndex
+                    DataManager.editorSelection = selectionModel.selectedIndex
                 }
             }
             button("Edit Character") {
@@ -17,8 +17,8 @@ class EditCharacterView : View("Characters") {
             }
             button("Delete Character") {
                 action {
-                    DataManager.removeCharacter(DataManager.WorldEditorSelection)
-                    DataManager.WorldEditorSelection = 0
+                    DataManager.removeCharacter(DataManager.editorSelection)
+                    DataManager.editorSelection = 0
                     find(EditCharacterView::class).replaceWith(CRUDCharacter::class, sizeToScene = true, centerOnScreen = true)
                 }
             }

@@ -8,7 +8,7 @@ class EditWorldView : View("Worlds") {
         fieldset {
             listview(DataManager.getWorldsAsObservable()) {
                 onUserSelect {
-                    DataManager.WorldEditorSelection = selectionModel.selectedIndex
+                    DataManager.editorSelection = selectionModel.selectedIndex
                 }
             }
             button("Edit World") {
@@ -18,8 +18,8 @@ class EditWorldView : View("Worlds") {
             }
             button("Delete World") {
                 action {
-                    DataManager.removeWorld(DataManager.WorldEditorSelection)
-                    DataManager.WorldEditorSelection = 0
+                    DataManager.removeWorld(DataManager.editorSelection)
+                    DataManager.editorSelection = 0
                     find(EditWorldView::class).replaceWith(CRUDWorld::class, sizeToScene = true, centerOnScreen = true)
                 }
             }
