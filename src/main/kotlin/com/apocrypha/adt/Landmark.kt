@@ -7,6 +7,6 @@ class Landmark constructor(
     var population: Int = 0
 ) {
     override fun toString(): String {
-        return "Landmark: $name"
+        return "Landmark: $name (About: $bio | Location: $locationName | Population: $population)"
     }
 }

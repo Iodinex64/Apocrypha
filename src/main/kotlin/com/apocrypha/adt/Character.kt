@@ -7,6 +7,6 @@ class Character constructor(
     var worldName: String = ""
 ) {
     override fun toString(): String {
-        return "Character: $name"
+        return "Character: $name ($race | Bio: $bio | World Name: $worldName)"
     }
 }

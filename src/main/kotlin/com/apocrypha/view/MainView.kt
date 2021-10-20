@@ -18,10 +18,15 @@ class MainView : View("Apocrypha Main Menu") {
     }
     override val root = form {
         fieldset {
-            field("Apocrypha-PROTOTYPE") {
+            field("Apocrypha") {
                 button("Save to JSON") {
                     action {
                         DataManager.saveToJSON()
+                    }
+                }
+                button("View All") {
+                    action {
+                        find(MainView::class).replaceWith(Search::class, sizeToScene = true, centerOnScreen = true)
                     }
                 }
                 vbox(alignment = Pos.CENTER) {

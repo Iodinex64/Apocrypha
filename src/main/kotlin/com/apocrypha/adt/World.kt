@@ -5,6 +5,6 @@ class World constructor(var name: String) {
     var locations = ArrayList<Location>()
 
     override fun toString(): String {
-        return "World: $name"
+        return "World: $name (Characters: " + characters.size + " | Locations: " + locations.size + ")"
     }
 }

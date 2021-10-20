@@ -14,6 +14,7 @@ class CRUDLandmark : View("Landmarks") {
                 }
                 button("Edit Landmarks") {
                     action {
+                        find(CRUDLandmark::class).replaceWith(EditLandmarkView::class, sizeToScene = true, centerOnScreen = true)
                     }
                 }
 

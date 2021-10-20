@@ -92,6 +92,7 @@ object DataManager {
                     val i = location.landmarks.indexOf(masterLandmarks[editorSelection])
                     location.landmarks[i] = newLA
                     masterLandmarks[editorSelection] = newLA
+                    location.calculatePop()
                     println("With $newLA")
                 }
             }

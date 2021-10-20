@@ -6,6 +6,6 @@ class Creature constructor(
     var locationName: String = ""
 ) {
     override fun toString(): String {
-        return "Creature: $name"
+        return "Creature: $name (Bio: $bio | Location of Origin: $locationName)"
     }
 }

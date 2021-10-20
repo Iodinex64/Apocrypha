@@ -6,6 +6,6 @@ class Race constructor(
     var locationName: String = ""
 ) {
     override fun toString(): String {
-        return "Race: $name"
+        return "Race: $name (Bio: $bio | Location of Origin: $locationName)"
     }
 }
