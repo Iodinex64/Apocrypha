@@ -29,6 +29,6 @@ class Location constructor(
     fun getPop(): Int { return population }
 
     override fun toString(): String {
-        return "Location: $name (About: $bio | World Name: $worldName)"
+        return "Location: $name (About: $bio | World Name: $worldName | Population: $population)"
     }
 }

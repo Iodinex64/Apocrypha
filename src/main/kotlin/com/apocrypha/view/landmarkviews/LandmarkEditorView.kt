@@ -1,14 +1,18 @@
 package com.apocrypha.view.landmarkviews
 import com.apocrypha.adt.Landmark
 import com.apocrypha.utils.DataManager
-    import javafx.scene.control.TextArea
-    import javafx.scene.control.TextField
-    import tornadofx.*
+import javafx.beans.property.SimpleBooleanProperty
+import javafx.beans.value.ObservableValue
+import javafx.scene.control.Button
+import javafx.scene.control.TextArea
+import javafx.scene.control.TextField
+import tornadofx.*
 
 class LandmarkEditorView : View("Edit Landmark") {
     private var landmarkNameField: TextField by singleAssign()
     private var landmarkBioField: TextArea by singleAssign()
     private var populationCount: TextField by singleAssign()
+    private var submitButton: Button by singleAssign()
     private var locationListIndex: Int = 0
 
     override val root = form {
@@ -18,6 +22,8 @@ class LandmarkEditorView : View("Edit Landmark") {
 
             label("Population (eg. 12, 3624, 472332... etc.")
             populationCount = textfield() {
+                action {
+                }
             }
 
             landmarkBioField = textarea("About this Landmark...") {
@@ -32,14 +38,20 @@ class LandmarkEditorView : View("Edit Landmark") {
             }
         }
 
-            button("Edit Landmark") {
+            submitButton =  button("Edit Landmark") {
                 action {
-                    val la = Landmark(
-                        landmarkNameField.text,
-                        landmarkBioField.text,
-                        DataManager.getLocationAtIndex(locationListIndex).name,
-                        populationCount.text.toInt())
-                    DataManager.editLandmark(la)
+                    if (populationCount.text.toIntOrNull() != null) {
+                        val la = Landmark(
+                            landmarkNameField.text,
+                            landmarkBioField.text,
+                            DataManager.getLocationAtIndex(locationListIndex).name,
+                            populationCount.text.toInt()
+                        )
+                        DataManager.editLandmark(la)
+                        find(LandmarkEditorView::class).replaceWith(CRUDLandmark::class, sizeToScene = true, centerOnScreen = true)
+                    } else {
+                        println("Population count is not an integer! Type something like 1252 or 35 instead.")
+                    }
                 }
             }
             button("Return") {

@@ -33,12 +33,17 @@ class CreateLandmarkView : View("Create Landmark") {
 
             button("Create Landmark") {
                 action {
-                    DataManager.createLandmark(
-                        landmarkNameField.text,
-                        landmarkBioField.text,
-                        populationCount.text.toInt(),
-                        DataManager.getLocationAtIndex(locationListIndex)
-                    )
+                    if (populationCount.text.toIntOrNull() != null) {
+                        DataManager.createLandmark(
+                            landmarkNameField.text,
+                            landmarkBioField.text,
+                            populationCount.text.toInt(),
+                            DataManager.getLocationAtIndex(locationListIndex)
+                        )
+                        find(CreateLandmarkView::class).replaceWith(CRUDLandmark::class, sizeToScene = true, centerOnScreen = true)
+                    } else {
+                        println("Population count is not an integer! Type something like 1252 or 35 instead.")
+                    }
                 }
             }
             button("Return") {
