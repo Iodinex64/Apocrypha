@@ -1,6 +1,7 @@
 package com.apocrypha.view.landmarkviews
 import com.apocrypha.utils.DataManager
-    import javafx.scene.control.TextArea
+import javafx.scene.control.Label
+import javafx.scene.control.TextArea
     import javafx.scene.control.TextField
     import tornadofx.*
 
@@ -8,6 +9,7 @@ class CreateLandmarkView : View("Create Landmark") {
     private var landmarkNameField: TextField by singleAssign()
     private var landmarkBioField: TextArea by singleAssign()
     private var populationCount: TextField by singleAssign()
+    private var warningLabel: Label = Label("")
     private var locationListIndex: Int = 0
 
     override val root = form {
@@ -31,6 +33,9 @@ class CreateLandmarkView : View("Create Landmark") {
             }
         }
 
+        warningLabel = label {
+
+        }
             button("Create Landmark") {
                 action {
                     if (populationCount.text.toIntOrNull() != null) {
@@ -42,6 +47,7 @@ class CreateLandmarkView : View("Create Landmark") {
                         )
                         find(CreateLandmarkView::class).replaceWith(CRUDLandmark::class, sizeToScene = true, centerOnScreen = true)
                     } else {
+                        warningLabel.text = "Population count is not an integer! Type something like 1252 or 35 instead."
                         println("Population count is not an integer! Type something like 1252 or 35 instead.")
                     }
                 }
