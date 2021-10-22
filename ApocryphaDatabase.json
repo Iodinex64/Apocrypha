@@ -17,13 +17,13 @@
         "landmarks": [
           {
             "name": "Testonia",
-            "bio": "Um???",
+            "bio": "A test landmark",
             "locationName": "Testoria",
             "population": 9
           },
           {
             "name": "Testonian",
-            "bio": "Um?????????????",
+            "bio": "Another testing landmark!",
             "locationName": "Testoria",
             "population": 10
           }

@@ -17,16 +17,16 @@ class LandmarkEditorView : View("Edit Landmark") {
 
     override val root = form {
         fieldset {
-            landmarkNameField = textfield("Landmark Name...") {
+            landmarkNameField = textfield(DataManager.masterLandmarks[DataManager.editorSelection].name) {
             }
 
             label("Population (eg. 12, 3624, 472332... etc.")
-            populationCount = textfield() {
+            populationCount = textfield(DataManager.masterLandmarks[DataManager.editorSelection].population.toString()) {
                 action {
                 }
             }
 
-            landmarkBioField = textarea("About this Landmark...") {
+            landmarkBioField = textarea(DataManager.masterLandmarks[DataManager.editorSelection].bio) {
             }
 
 

@@ -10,12 +10,8 @@ repositories {
     mavenCentral()
 }
 
-application {
-    mainClassName = "com.example.MainKt"
-}
-
 dependencies {
-    implementation "com.google.code.gson:gson:2.8.5"
+    implementation 'com.google.code.gson:gson:2.8.8'
     implementation "no.tornado:tornadofx:$tornadofx_version"
 }
 
