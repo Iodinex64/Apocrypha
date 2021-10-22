@@ -21,7 +21,7 @@ class CharacterEditorView : View("Edit Character") {
 
             label("Race:")
             listview(DataManager.getRacesAsObservable()) {
-                onUserSelect {
+                onUserSelect(clickCount = 1) {
                     raceListIndex = selectionModel.selectedIndex
                 }
             }

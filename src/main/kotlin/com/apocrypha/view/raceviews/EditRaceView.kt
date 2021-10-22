@@ -6,7 +6,7 @@ class EditRaceView : View("Races") {
     override val root = form {
         fieldset {
             listview(DataManager.getRacesAsObservable()) {
-                onUserSelect {
+                onUserSelect(clickCount = 1) {
                     DataManager.editorSelection = selectionModel.selectedIndex
                 }
             }
@@ -18,7 +18,6 @@ class EditRaceView : View("Races") {
             button("Delete Race") {
                 action {
                     DataManager.removeRace(DataManager.editorSelection)
-                    DataManager.editorSelection = 0
                     find(EditRaceView::class).replaceWith(CRUDRace::class, sizeToScene = true, centerOnScreen = true)
                 }
             }

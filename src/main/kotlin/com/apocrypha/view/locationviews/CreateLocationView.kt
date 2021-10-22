@@ -11,15 +11,15 @@ class CreateLocationView : View("Create Location") {
 
     override val root = form {
         fieldset {
-            locationNameField = textfield(DataManager.masterLocations[DataManager.editorSelection].name) {
+            locationNameField = textfield("Location name") {
             }
 
-            locationBioField = textarea(DataManager.masterLocations[DataManager.editorSelection].bio) {
+            locationBioField = textarea("About this location...") {
 
             }
             label("World this location belongs to:")
             listview(DataManager.getWorldsAsObservable()) {
-                onUserSelect {
+                onUserSelect(clickCount = 1) {
                     worldListIndex = selectionModel.selectedIndex
                 }
             }

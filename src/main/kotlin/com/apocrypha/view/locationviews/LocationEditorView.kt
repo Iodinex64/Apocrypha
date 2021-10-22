@@ -24,7 +24,7 @@ class LocationEditorView : View("Edit Location") {
             }
             label("World this location belongs to:")
             listview(DataManager.getWorldsAsObservable()) {
-                onUserSelect {
+                onUserSelect(clickCount = 1) {
                     worldListIndex = selectionModel.selectedIndex
                 }
             }

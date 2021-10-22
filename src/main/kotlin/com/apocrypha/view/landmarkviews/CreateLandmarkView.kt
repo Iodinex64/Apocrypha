@@ -27,7 +27,7 @@ class CreateLandmarkView : View("Create Landmark") {
 
             label("Location it's from:")
             listview(DataManager.getLocationsAsObservable()) {
-                onUserSelect {
+                onUserSelect(clickCount = 1) {
                     locationListIndex = selectionModel.selectedIndex
                 }
             }

@@ -19,7 +19,7 @@ override val root = form {
         }
         label("Place of origin:")
         listview(DataManager.getLocationsAsObservable()) {
-            onUserSelect {
+            onUserSelect(clickCount = 1) {
                 locationListIndex = selectionModel.selectedIndex
             }
         }

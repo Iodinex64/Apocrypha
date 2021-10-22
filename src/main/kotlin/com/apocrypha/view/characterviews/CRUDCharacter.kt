@@ -1,5 +1,6 @@
 package com.apocrypha.view.characterviews
 
+import com.apocrypha.utils.DataManager
 import com.apocrypha.view.MainView
 import tornadofx.*
 
@@ -15,6 +16,7 @@ class CRUDCharacter : View("Characters") {
                 button("Edit Characters") {
                     action {
                         find(CRUDCharacter::class).replaceWith(EditCharacterView::class, sizeToScene = true, centerOnScreen = true)
+                        DataManager.editorSelection = -1
                     }
                 }
 

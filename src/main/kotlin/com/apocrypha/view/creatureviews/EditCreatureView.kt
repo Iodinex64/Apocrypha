@@ -6,7 +6,7 @@ class EditCreatureView : View("Creatures") {
     override val root = form {
         fieldset {
             listview(DataManager.getCreaturesAsObservable()) {
-                onUserSelect {
+                onUserSelect(clickCount = 1) {
                     DataManager.editorSelection = selectionModel.selectedIndex
                 }
             }
@@ -18,7 +18,6 @@ class EditCreatureView : View("Creatures") {
             button("Delete Creature") {
                 action {
                     DataManager.removeCreature(DataManager.editorSelection)
-                    DataManager.editorSelection = 0
                     find(EditCreatureView::class).replaceWith(CRUDCreature::class, sizeToScene = true, centerOnScreen = true)
                 }
             }

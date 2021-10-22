@@ -6,7 +6,7 @@ class EditCharacterView : View("Characters") {
     override val root = form {
         fieldset {
             listview(DataManager.getCharactersAsObservable()) {
-                onUserSelect {
+                onUserSelect(clickCount = 1) {
                     DataManager.editorSelection = selectionModel.selectedIndex
                 }
             }
@@ -18,7 +18,6 @@ class EditCharacterView : View("Characters") {
             button("Delete Character") {
                 action {
                     DataManager.removeCharacter(DataManager.editorSelection)
-                    DataManager.editorSelection = 0
                     find(EditCharacterView::class).replaceWith(CRUDCharacter::class, sizeToScene = true, centerOnScreen = true)
                 }
             }

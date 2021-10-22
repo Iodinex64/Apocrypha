@@ -1,4 +1,5 @@
 package com.apocrypha.view.worldviews
+import com.apocrypha.utils.DataManager
 import com.apocrypha.view.MainView
 import tornadofx.*
 
@@ -14,6 +15,7 @@ class CRUDWorld : View("Worlds") {
                 button("Edit Worlds") {
                     action {
                         find(CRUDWorld::class).replaceWith(EditWorldView::class, sizeToScene = true, centerOnScreen = true)
+                        DataManager.editorSelection = -1
                     }
                 }
 

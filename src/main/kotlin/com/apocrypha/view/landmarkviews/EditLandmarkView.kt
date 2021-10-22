@@ -6,7 +6,7 @@ class EditLandmarkView : View("Landmarks") {
     override val root = form {
         fieldset {
             listview(DataManager.getLandmarksAsObservable()) {
-                onUserSelect {
+                onUserSelect(clickCount = 1) {
                     DataManager.editorSelection = selectionModel.selectedIndex
                 }
             }
@@ -18,7 +18,6 @@ class EditLandmarkView : View("Landmarks") {
             button("Delete Landmark") {
                 action {
                     DataManager.removeLandmark(DataManager.editorSelection)
-                    DataManager.editorSelection = 0
                     find(EditLandmarkView::class).replaceWith(CRUDLandmark::class, sizeToScene = true, centerOnScreen = true)
                 }
             }

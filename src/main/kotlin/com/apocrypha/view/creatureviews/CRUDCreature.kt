@@ -1,5 +1,6 @@
 package com.apocrypha.view.creatureviews
 
+import com.apocrypha.utils.DataManager
 import com.apocrypha.view.MainView
 import tornadofx.*
 
@@ -15,6 +16,7 @@ class CRUDCreature : View("Creatures") {
                 button("Edit Creatures") {
                     action {
                         find(CRUDCreature::class).replaceWith(EditCreatureView::class, sizeToScene = true, centerOnScreen = true)
+                        DataManager.editorSelection = -1
                     }
                 }
 

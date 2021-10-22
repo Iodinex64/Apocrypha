@@ -1,5 +1,6 @@
 package com.apocrypha.view.landmarkviews
 
+import com.apocrypha.utils.DataManager
 import com.apocrypha.view.MainView
 import tornadofx.*
 
@@ -15,6 +16,7 @@ class CRUDLandmark : View("Landmarks") {
                 button("Edit Landmarks") {
                     action {
                         find(CRUDLandmark::class).replaceWith(EditLandmarkView::class, sizeToScene = true, centerOnScreen = true)
+                        DataManager.editorSelection = -1
                     }
                 }
 

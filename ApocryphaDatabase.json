@@ -2,52 +2,45 @@
   {
     "characters": [
       {
-        "name": "Testy Mc. Teston",
+        "name": "Hero Mc Heroface",
         "race": {
           "name": "Testii",
           "bio": "A testing race.",
           "locationName": "Testoria"
         },
-        "bio": "He likes to test the waters.",
-        "worldName": "Testera"
+        "bio": "Grand hero of Kotlin",
+        "worldName": "Testerani"
       }
     ],
     "locations": [
       {
         "landmarks": [
           {
-            "name": "Testonia",
-            "bio": "A test landmark",
-            "locationName": "Testoria",
-            "population": 9
+            "name": "uhfdskvi",
+            "bio": "hello",
+            "locationName": "fatherland",
+            "population": 100
           },
           {
-            "name": "Testonian",
-            "bio": "Another testing landmark!",
-            "locationName": "Testoria",
-            "population": 10
+            "name": "qweoiqueoqi",
+            "bio": "hellothere",
+            "locationName": "fatherland",
+            "population": 15
           }
         ],
-        "creatures": [
-          {
-            "name": "La creatura",
-            "bio": "AAAGHGAHHGHAGH BARKBARKBARKBARKBARK RRRHGHGHGHHGH",
-            "locationName": "Testoria"
-          }
-        ],
-        "races": [
-          {
-            "name": "Testii",
-            "bio": "A testing race.",
-            "locationName": "Testoria"
-          }
-        ],
-        "population": 19,
-        "name": "Testoria",
-        "bio": "A testing location.",
-        "worldName": "Testera"
+        "creatures": [],
+        "races": [],
+        "population": 115,
+        "name": "fatherland",
+        "bio": "glory to the kotlin party",
+        "worldName": "Testerani"
       }
     ],
-    "name": "Testera"
+    "name": "Testerani"
+  },
+  {
+    "characters": [],
+    "locations": [],
+    "name": "Pangea"
   }
 ]

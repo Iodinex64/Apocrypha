@@ -21,7 +21,7 @@ class RaceEditorView : View("Create race") {
 
             label("Place of origin:")
             listview(DataManager.getLocationsAsObservable()) {
-                onUserSelect {
+                onUserSelect(clickCount = 1) {
                     locationListIndex = selectionModel.selectedIndex
                 }
             }

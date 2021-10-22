@@ -19,13 +19,13 @@ class CreateCharacterView : View("Create Character") {
             }
             label("World of origin:")
             listview(DataManager.getWorldsAsObservable()) {
-                onUserSelect {
+                onUserSelect(clickCount = 1) {
                     worldListIndex = selectionModel.selectedIndex
                 }
             }
             label("Race:")
             listview(DataManager.getRacesAsObservable()) {
-                onUserSelect {
+                onUserSelect(clickCount = 1) {
                     raceListIndex = selectionModel.selectedIndex
                 }
             }

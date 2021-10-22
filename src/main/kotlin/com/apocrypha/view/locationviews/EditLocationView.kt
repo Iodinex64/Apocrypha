@@ -6,7 +6,7 @@ class EditLocationView : View("Locations") {
     override val root = form {
         fieldset {
             listview(DataManager.getLocationsAsObservable()) {
-                onUserSelect {
+                onUserSelect(clickCount = 1) {
                     DataManager.editorSelection = selectionModel.selectedIndex
                 }
             }
@@ -18,7 +18,6 @@ class EditLocationView : View("Locations") {
             button("Delete Location") {
                 action {
                     DataManager.removeLocation(DataManager.editorSelection)
-                    DataManager.editorSelection = 0
                     find(EditLocationView::class).replaceWith(CRUDLocation::class, sizeToScene = true, centerOnScreen = true)
                 }
             }
